@@ -16,10 +16,10 @@ class ControllerFullTest {
 
   @Test
   void findUserById_shouldReturnUser() {
-    User expectedUser = new User(1, "Alice");
+    User expectedUser = new User("1", "Alice");
 
     User actualUser =
-        testRestTemplate.getForObject("http://localhost:8080/api/v1/users?id=1", User.class);
+        testRestTemplate.getForObject("http://localhost:8080/api/v1/users/1", User.class);
 
     Assertions.assertNotNull(actualUser);
     Assertions.assertEquals(expectedUser, actualUser);
