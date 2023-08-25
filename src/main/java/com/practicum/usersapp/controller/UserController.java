@@ -2,6 +2,8 @@ package com.practicum.usersapp.controller;
 
 import com.practicum.usersapp.configuration.UuidGenerator;
 import com.practicum.usersapp.dto.User;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,11 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
+@Api(tags = "UserController", description = "Операции с пользователями")
 public class UserController {
 
   private final UuidGenerator uuidGenerator;
 
-  private Map<String, User> idToUser =
+  private final Map<String, User> idToUser =
       new HashMap<>() {
         {
           put("1", new User("1", "Alice"));
@@ -35,6 +38,7 @@ public class UserController {
   }
 
   @GetMapping("/{id}")
+  @ApiOperation("Получение пользователя по ID")
   public User findUserById(@PathVariable String id) {
     return idToUser.get(id);
   }
