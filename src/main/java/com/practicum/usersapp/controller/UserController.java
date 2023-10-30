@@ -1,11 +1,10 @@
 package com.practicum.usersapp.controller;
 
-import com.practicum.usersapp.model.User;
+import com.practicum.usersapp.dto.UserDto;
 import com.practicum.usersapp.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
-import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,19 +23,19 @@ public class UserController {
 
   @GetMapping("/{id}")
   @ApiOperation("Получение пользователя по ID")
-  public User findUserById(@PathVariable Integer id) {
+  public UserDto findUserById(@PathVariable Integer id) {
     return userService.findUserById(id);
   }
 
   @PostMapping
   @ApiOperation("Создание пользователя")
-  public User createUser(@RequestBody @Valid User user) {
+  public UserDto createUser(@RequestBody UserDto user) {
     return userService.createUser(user);
   }
 
   @GetMapping("/list")
   @ApiOperation("Получение всех пользователей")
-  public List<User> findAllUsers() {
+  public List<UserDto> findAllUsers() {
     throw new RuntimeException("Not Implemented");
   }
 }

@@ -1,11 +1,12 @@
 package com.practicum.usersapp.service;
 
 import com.practicum.usersapp.dao.UserDao;
-import com.practicum.usersapp.model.User;
+import com.practicum.usersapp.dto.UserDto;
+import com.practicum.usersapp.mappers.UserMapper;
+import com.practicum.usersapp.model.UserEntity;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
@@ -13,16 +14,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class UserService {
 
   private final UserDao userDao;
+  private final UserMapper userMapper;
 
-  public User createUser(@RequestBody User user) {
-    return userDao.createUser(user);
+  public UserDto createUser(@RequestBody UserDto user) {
+    UserEntity userEntity = userMapper.toEntity(user);
+    userEntity = userDao.createUser(userEntity);
+    return userMapper.toDto(userEntity);
   }
 
-  public User findUserById(@PathVariable Integer id) {
-    return userDao.findUserById(id);
+  public UserDto findUserById(Integer id) {
+    return userMapper.toDto(userDao.findUserById(id));
   }
 
-  public List<User> findAllUsers() {
+  public List<UserDto> findAllUsers() {
     throw new RuntimeException("Not Implemented");
   }
 }

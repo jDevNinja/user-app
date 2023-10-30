@@ -1,6 +1,6 @@
 package com.practicum.usersapp.dao;
 
-import com.practicum.usersapp.model.User;
+import com.practicum.usersapp.model.UserEntity;
 import java.sql.PreparedStatement;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -22,16 +22,16 @@ public class UserDao {
 
   private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-  private final RowMapper<User> userMapper =
+  private final RowMapper<UserEntity> userMapper =
       (rs, rowNum) ->
-          User.builder()
+          UserEntity.builder()
               .id(rs.getInt("id"))
               .name(rs.getString("name"))
               .lastName(rs.getString("lastName"))
               .age(rs.getInt("age"))
               .build();
 
-  public User createUser(@RequestBody User user) {
+  public UserEntity createUser(@RequestBody UserEntity user) {
     KeyHolder keyHolder = new GeneratedKeyHolder();
 
     jdbcTemplate.update(
@@ -51,14 +51,14 @@ public class UserDao {
     return user;
   }
 
-  public User findUserById(@PathVariable Integer id) {
+  public UserEntity findUserById(@PathVariable Integer id) {
     MapSqlParameterSource paramSource = new MapSqlParameterSource();
     paramSource.addValue("id", id);
     return namedParameterJdbcTemplate.queryForObject(
         "SELECT * FROM users WHERE id = :id", paramSource, userMapper);
   }
 
-  public List<User> findAllUsers() {
+  public List<UserEntity> findAllUsers() {
     throw new RuntimeException("Not Implemented");
   }
 }
