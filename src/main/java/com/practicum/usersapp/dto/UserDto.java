@@ -22,7 +22,4 @@ public class UserDto {
 
   @ApiModelProperty(value = "Возраст", example = "25")
   private Integer vozrast;
-
-  @ApiModelProperty(value = "Температура", example = "25")
-  private Double temperatureFahrenteit;
 }

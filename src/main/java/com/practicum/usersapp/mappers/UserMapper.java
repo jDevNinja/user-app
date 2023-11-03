@@ -12,19 +12,11 @@ public interface UserMapper {
   @Mapping(source = "id", target = "uuid")
   @Mapping(source = "age", target = "vozrast")
   @Mapping(source = "name", target = "firstName")
-  @Mapping(
-      source = "temperatureCelsius",
-      target = "temperatureFahrenteit",
-      qualifiedByName = "celsiusToFahrenteit")
   UserDto toDto(UserEntity userEntity);
 
   @Mapping(source = "uuid", target = "id")
   @Mapping(source = "vozrast", target = "age")
   @Mapping(source = "firstName", target = "name")
-  @Mapping(
-      source = "temperatureFahrenteit",
-      target = "temperatureCelsius",
-      qualifiedByName = "celsiusToFahrenteit")
   UserEntity toEntity(UserDto userDto);
 
   @Named("celsiusToFahrenteit")
