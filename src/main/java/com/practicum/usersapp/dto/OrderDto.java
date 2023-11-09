@@ -1,4 +1,4 @@
-package com.practicum.usersapp.model;
+package com.practicum.usersapp.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,16 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class UserModel {
-
+public class OrderDto {
   private Integer id;
 
-  private String name;
+  private String description;
 
-  private String lastName;
-
-  private Integer age;
+  private String status;
 }
