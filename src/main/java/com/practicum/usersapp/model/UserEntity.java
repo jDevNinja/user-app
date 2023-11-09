@@ -18,6 +18,4 @@ public class UserEntity {
   private String lastName;
 
   private Integer age;
-
-  private Double temperatureCelsius;
 }

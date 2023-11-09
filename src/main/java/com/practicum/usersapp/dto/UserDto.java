@@ -12,17 +12,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserDto {
   @ApiModelProperty(value = "Идентификатор", example = "1")
-  private Integer uuid;
+  private Integer id;
 
   @ApiModelProperty(value = "Имя", example = "Иван")
-  private String firstName;
+  private String name;
 
   @ApiModelProperty(value = "Фамилия", example = "Петров")
   private String lastName;
 
   @ApiModelProperty(value = "Возраст", example = "25")
-  private Integer vozrast;
-
-  @ApiModelProperty(value = "Температура", example = "25")
-  private Double temperatureFahrenteit;
+  private Integer age;
 }
