@@ -3,7 +3,7 @@ package com.practicum.usersapp.service;
 import com.practicum.usersapp.dao.UserDao;
 import com.practicum.usersapp.dto.UserDto;
 import com.practicum.usersapp.mappers.UserMapper;
-import com.practicum.usersapp.model.UserEntity;
+import com.practicum.usersapp.model.UserModel;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,9 +17,9 @@ public class UserService {
   private final UserMapper userMapper;
 
   public UserDto createUser(@RequestBody UserDto user) {
-    UserEntity userEntity = userMapper.toEntity(user);
-    userEntity = userDao.createUser(userEntity);
-    return userMapper.toDto(userEntity);
+    UserModel userModel = userMapper.toModel(user);
+    userModel = userDao.createUser(userModel);
+    return userMapper.toDto(userModel);
   }
 
   public UserDto findUserById(Integer id) {

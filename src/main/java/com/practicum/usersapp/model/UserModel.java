@@ -9,7 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 @ApiModel(description = "Пользователь")
 @Builder
-public class UserEntity {
+public class UserModel {
 
   private Integer id;
 
