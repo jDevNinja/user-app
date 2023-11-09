@@ -27,13 +27,13 @@ public class OrderController {
 
   @PostMapping
   @ApiOperation("Создание пользователя")
-  public OrderDto createOrder(@RequestBody OrderDto user) {
-    throw new RuntimeException("Not Implemented");
+  public OrderDto saveOrder(@RequestBody OrderDto user) {
+    return orderService.save(user);
   }
 
   @GetMapping("/list")
   @ApiOperation("Получение всех пользователей")
   public List<OrderDto> findAllOrders() {
-    throw new RuntimeException("Not Implemented");
+    return orderService.findAll();
   }
 }

@@ -1,14 +1,16 @@
-server:
-  port: 8080
+#server:
+#  port: 8080
+#
+#spring:
+#  sql:
+#    init:
+#      mode: always
+#  datasource:
+#    url: jdbc:h2:file:./db/user-app
+#    username: user
+#    password: pass
+#    driverClassName: org.h2.Driver
+#  h2:
+#    console.enabled: true
 
-spring:
-  sql:
-    init:
-      mode: always
-  datasource:
-    url: jdbc:h2:file:./db/user-app
-    username: user
-    password: pass
-    driverClassName: org.h2.Driver
-  h2:
-    console.enabled: true
+

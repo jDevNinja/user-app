@@ -4,7 +4,6 @@ import com.practicum.usersapp.dto.UserDto;
 import com.practicum.usersapp.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,18 +23,12 @@ public class UserController {
   @GetMapping("/{id}")
   @ApiOperation("Получение пользователя по ID")
   public UserDto findUserById(@PathVariable Integer id) {
-    return userService.findUserById(id);
+    return userService.findById(id);
   }
 
   @PostMapping
   @ApiOperation("Создание пользователя")
   public UserDto createUser(@RequestBody UserDto user) {
-    return userService.createUser(user);
-  }
-
-  @GetMapping("/list")
-  @ApiOperation("Получение всех пользователей")
-  public List<UserDto> findAllUsers() {
-    throw new RuntimeException("Not Implemented");
+    return userService.save(user);
   }
 }

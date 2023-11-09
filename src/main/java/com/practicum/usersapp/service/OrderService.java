@@ -4,6 +4,7 @@ import com.practicum.usersapp.dao.OrderRepository;
 import com.practicum.usersapp.dto.OrderDto;
 import com.practicum.usersapp.mappers.OrderMapper;
 import com.practicum.usersapp.model.OrderEntity;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +18,15 @@ public class OrderService {
     OrderEntity order = orderRepository.findById(id).get();
     return orderMapper.toDto(order);
   }
-  
+
+  public OrderDto save(OrderDto newOrder) {
+    OrderEntity order = orderMapper.toEntity(newOrder);
+    order = orderRepository.save(order);
+    return orderMapper.toDto(order);
+  }
+
+  public List<OrderDto> findAll() {
+    List<OrderEntity> all = orderRepository.findAllByOrderByDescriptionAsc();
+    return orderMapper.toDto(all);
+  }
 }
