@@ -15,7 +15,10 @@ public class OrderService {
   private final OrderMapper orderMapper;
 
   public OrderDto findById(Integer id) {
-    OrderEntity order = orderRepository.findById(id).get();
+    OrderEntity order =
+        orderRepository
+            .findById(id)
+            .orElseThrow(() -> new RuntimeException("Заказ не найден"));
     return orderMapper.toDto(order);
   }
 
