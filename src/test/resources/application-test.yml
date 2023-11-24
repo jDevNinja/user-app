@@ -5,6 +5,6 @@ spring:
     password: pass
     driverClassName: org.h2.Driver
   h2:
-    console.enabled: true
+    console.enabled: false
 
 

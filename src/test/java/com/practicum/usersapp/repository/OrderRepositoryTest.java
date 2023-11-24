@@ -1,5 +1,7 @@
 package com.practicum.usersapp.repository;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.practicum.usersapp.dao.OrderRepository;
 import com.practicum.usersapp.model.OrderEntity;
 import java.util.Optional;
@@ -21,9 +23,17 @@ class OrderRepositoryTest {
     OrderEntity order = OrderEntity.builder().description("Телефон").status("DELIVERED").build();
     OrderEntity savedOrder = orderRepository.save(order);
 
+    OrderEntity expectedEntity =
+        OrderEntity.builder().id(1).description("Телефон").status("DELIVERED").build();
+
     Optional<OrderEntity> actualOrder = orderRepository.findById(savedOrder.getId());
 
     Assertions.assertTrue(actualOrder.isPresent());
-    Assertions.assertEquals(savedOrder, actualOrder.get());
+    Assertions.assertNotNull(actualOrder.get().getId());
+
+    assertThat(expectedEntity)
+        .usingRecursiveComparison()
+        .ignoringFields("id")
+        .isEqualTo(actualOrder.get());
   }
 }

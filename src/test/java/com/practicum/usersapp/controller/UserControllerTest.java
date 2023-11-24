@@ -1,5 +1,9 @@
 package com.practicum.usersapp.controller;
 
+import static com.practicum.usersapp.utils.ResourcePool.*;
+import static com.practicum.usersapp.utils.ResourcePool.createUserRequest;
+import static com.practicum.usersapp.utils.ResourcePool.createdUserDto;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.practicum.usersapp.dto.UserDto;
 import com.practicum.usersapp.service.UserService;
@@ -23,8 +27,12 @@ class UserControllerTest {
 
   @Test
   void createUser() throws Exception {
-    UserDto userDto = UserDto.builder().name("Alice").age(20).build();
-    UserDto savedUserDto = UserDto.builder().id(1).name("Alice").age(20).build();
+    UserDto savedUserDto = read(createdUserDto, UserDto.class);
+
+    // просто пример чтения коллекции из ресурса
+    // ArrayList<UserDto> users = read(usersDtoList, new TypeReference<ArrayList<UserDto>>() {});
+
+    UserDto userDto = read(createUserRequest, UserDto.class);
 
     Mockito.when(userService.save(userDto)).thenReturn(savedUserDto);
 
